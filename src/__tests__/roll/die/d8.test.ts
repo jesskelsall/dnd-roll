@@ -1,32 +1,32 @@
 import Joi from 'joi'
 import { AVERAGE_TOLERANCE } from '../../../consts'
-import { dice } from '../../../roll/dice'
-import { DiceRoll } from '../../../roll/types'
+import { die } from '../../../roll/die'
+import { DieRoll } from '../../../roll/types'
 import { repeat } from '../../_helpers/repeat'
 
-const SIDES = 6
-const d6 = dice(SIDES)
+const SIDES = 8
+const d8 = die(SIDES)
 
 test('returns a number', async () => {
   expect.assertions(SIDES)
 
   repeat(SIDES, () => {
-    expect(d6()).toMatchJoiSchema(Joi.number().integer())
+    expect(d8()).toMatchJoiSchema(Joi.number().integer())
   })
 })
 
-test('returns a number between 1 and 6', async () => {
-  const rolls = repeat<DiceRoll>(SIDES * 100, d6)
+test('returns a number between 1 and 8', async () => {
+  const rolls = repeat<DieRoll>(SIDES * 100, d8)
 
   expect(Math.min(...rolls)).toBeGreaterThanOrEqual(1)
-  expect(Math.max(...rolls)).toBeLessThanOrEqual(6)
+  expect(Math.max(...rolls)).toBeLessThanOrEqual(8)
 })
 
-test('returns an average of 3.5 within an acceptable tolerance', async () => {
+test('returns an average of 4.5 within an acceptable tolerance', async () => {
   const times = SIDES * 500000
-  const rolls = repeat<DiceRoll>(times, d6)
+  const rolls = repeat<DieRoll>(times, d8)
 
-  const pureAverage = 3.5
+  const pureAverage = 4.5
   const realAverage = rolls.reduce((sum, roll) => sum + roll) / times
   const deviation = Math.abs(pureAverage - realAverage)
 

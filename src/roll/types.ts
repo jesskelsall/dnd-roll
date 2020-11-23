@@ -2,49 +2,60 @@ import { POLYHEDRAL_SIDES } from '../consts'
 
 // DICE
 
-// The number that is returned when rolling a dice
-export type DiceRoll = number
+// A polyhedral die with a number of sides (s) with faces from 1 to s
+export type Die = () => number
 
-// A polyhedral dice with a number of sides (s) with faces from 1 to s
-export type Dice = () => DiceRoll
-
-// A number expressing a valid amount of sides for a polyhedral dice to have
+// A number expressing a valid amount of sides for polyhedral dice to have
 export type PolyhedralSides = 4 | 6 | 8 | 10 | 12 | 20 | 100
 
 export const isPolyhedralSides = (
   sides: number,
 ): sides is PolyhedralSides => POLYHEDRAL_SIDES.includes(sides)
 
+// ROLL METHODS
+
+// Rolls twice instead of once, taking only one number
+// Advantage: highest number
+// Disadvantage: lowest number
+export type RollModifier = 'advantage' | 'disadvantage'
+
+// How to make a percentile (d100) roll:
+// Consistent: tens d10 "0" = 10
+// Exception: tens d10 "0" = 0. "00" + "0" = 100
+// d100: roll a single 100 sided dice
+export type PercentileMethod = 'consistent' | 'exception'
+export type D100Method = PercentileMethod | 'd100'
+
 // ROLLS
 
-// A single polyhedral dice is rolled once
-export interface Roll {
-  diceRoll: DiceRoll,
+// A die is rolled once
+export interface SingleRoll {
+  diceRoll: number,
+  value: number,
 }
 
-// A dice is rolled twice to provide advantage or disadvantage
-export interface DoubleRoll extends Roll {
-  secondRoll: DiceRoll,
+// A die is rolled twice to provide advantage or disadvantage
+export interface DoubleRoll extends SingleRoll {
+  secondRoll: number,
 }
 
 // Two d10 are rolled to form a single 1-100 number
 // One represents the tens, one represents the units
-export interface PercentileRoll extends Roll {
-  tensRoll: DiceRoll,
+export interface PercentileRoll extends SingleRoll {
+  tensRoll: number,
 }
 
 // The result of each dice notation e.g. 3d10
 export interface NormalRollGroup {
   sides: PolyhedralSides,
-  rolls: Roll[],
+  rolls: SingleRoll[],
   quantity: number,
+  total: number,
 }
 
 // When rolling d20s with advantage or disadvantage, all rolls are two d20 rolls
-// Advantage: highest number
-// Disadvantage: lowest number
 export interface DoubleD20RollGroup extends NormalRollGroup {
-  condition: 'advantage' | 'disadvantage',
+  modifier: RollModifier,
   sides: 20,
   rolls: DoubleRoll[],
 }
