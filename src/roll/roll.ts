@@ -37,24 +37,27 @@ export const rollDoubleDice = (
   }
 }
 
+// Converts a 10 roll into a 0
+export const tenIsZero = (number: number): number => (number === 10 ? 0 : number)
+
 // Always treat "00" as 0
 // Always treat "0" as 10
 // e.g. "90" + "0" = 100, "00" + "0" = 10
 export const getConsistentPercentileValue = (
   tensRoll: number,
   unitsRoll: number,
-): number => (tensRoll - 1) * 10 + unitsRoll
+): number => tenIsZero(tensRoll) * 10 + unitsRoll
 
 // Typically treat "00" as 0
-// Always treat "0" as 10
-// "00" means 100 if coupled with "0" (exception)
+// Typically treat "0" as 0
+// "00" together with "0" means 100 (exception)
 // e.g. "90" + "0" = 90, "00" + "0" = 100
 export const getExceptionPercentileValue = (
   tensRoll: number,
   unitsRoll: number,
 ): number => {
   if (tensRoll === 10 && unitsRoll === 10) return 100
-  return (tensRoll - 1) * 10 + (unitsRoll - 1)
+  return tenIsZero(tensRoll) * 10 + tenIsZero(unitsRoll)
 }
 
 // Rolls a d10 twice to create a 1-100 number

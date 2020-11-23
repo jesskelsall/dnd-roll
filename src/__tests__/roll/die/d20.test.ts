@@ -1,7 +1,6 @@
 import Joi from 'joi'
 import { AVERAGE_TOLERANCE } from '../../../consts'
 import { die } from '../../../roll/die'
-import { DieRoll } from '../../../roll/types'
 import { repeat } from '../../_helpers/repeat'
 
 const SIDES = 20
@@ -16,7 +15,7 @@ test('returns a number', async () => {
 })
 
 test('returns a number between 1 and 20', async () => {
-  const rolls = repeat<DieRoll>(SIDES * 100, d20)
+  const rolls = repeat<number>(SIDES * 100, d20)
 
   expect(Math.min(...rolls)).toBeGreaterThanOrEqual(1)
   expect(Math.max(...rolls)).toBeLessThanOrEqual(20)
@@ -24,7 +23,7 @@ test('returns a number between 1 and 20', async () => {
 
 test('returns an average of 10.5 within an acceptable tolerance', async () => {
   const times = SIDES * 500000
-  const rolls = repeat<DieRoll>(times, d20)
+  const rolls = repeat<number>(times, d20)
 
   const pureAverage = 10.5
   const realAverage = rolls.reduce((sum, roll) => sum + roll) / times
