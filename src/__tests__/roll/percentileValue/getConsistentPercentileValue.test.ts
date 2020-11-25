@@ -1,4 +1,4 @@
-import { getConsistentPercentileValue } from '../../../roll/roll'
+import { getConsistentPercentileValue } from '../../../roll/percentileValue'
 
 test('returns expected values for simple number pairings', async () => {
   expect(getConsistentPercentileValue(1, 1)).toBe(11)

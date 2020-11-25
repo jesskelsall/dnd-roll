@@ -1,4 +1,4 @@
-import { getExceptionPercentileValue } from '../../../roll/roll'
+import { getExceptionPercentileValue } from '../../../roll/percentileValue'
 
 test('returns expected values for simple number pairings', async () => {
   expect(getExceptionPercentileValue(1, 1)).toBe(11)

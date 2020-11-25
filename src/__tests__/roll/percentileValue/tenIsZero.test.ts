@@ -1,4 +1,4 @@
-import { tenIsZero } from '../../../roll/roll'
+import { tenIsZero } from '../../../roll/percentileValue'
 
 test('returns the number if it is not 10', async () => {
   expect(tenIsZero(1)).toBe(1)

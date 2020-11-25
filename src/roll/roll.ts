@@ -1,4 +1,5 @@
 import { die } from './die'
+import percentileMethods from './percentileValue'
 import {
   DoubleRoll,
   PercentileMethod,
@@ -37,29 +38,6 @@ export const rollDoubleDice = (
   }
 }
 
-// Converts a 10 roll into a 0
-export const tenIsZero = (number: number): number => (number === 10 ? 0 : number)
-
-// Always treat "00" as 0
-// Always treat "0" as 10
-// e.g. "90" + "0" = 100, "00" + "0" = 10
-export const getConsistentPercentileValue = (
-  tensRoll: number,
-  unitsRoll: number,
-): number => tenIsZero(tensRoll) * 10 + unitsRoll
-
-// Typically treat "00" as 0
-// Typically treat "0" as 0
-// "00" together with "0" means 100 (exception)
-// e.g. "90" + "0" = 90, "00" + "0" = 100
-export const getExceptionPercentileValue = (
-  tensRoll: number,
-  unitsRoll: number,
-): number => {
-  if (tensRoll === 10 && unitsRoll === 10) return 100
-  return tenIsZero(tensRoll) * 10 + tenIsZero(unitsRoll)
-}
-
 // Rolls a d10 twice to create a 1-100 number
 // Use one of the two methods of turning two 1-10 numbers into a 1-100 number
 export const rollPercentileDice = (
@@ -70,8 +48,8 @@ export const rollPercentileDice = (
   const unitsRoll = d10()
 
   const valueFunction = percentileMethod === 'consistent'
-    ? getConsistentPercentileValue
-    : getExceptionPercentileValue
+    ? percentileMethods.consistent
+    : percentileMethods.exception
 
   return {
     diceRoll: unitsRoll,

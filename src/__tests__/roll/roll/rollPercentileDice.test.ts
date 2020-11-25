@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import percentileMethods from '../../../roll/percentileValue'
 import { rollPercentileDice } from '../../../roll/roll'
 
 const rollSchema = Joi.number().integer().min(1).max(10)
@@ -16,4 +17,18 @@ test('returns a PercentileRoll', async () => {
 
   const exceptionResult = rollPercentileDice('exception')
   expect(exceptionResult).toMatchJoiSchema(percentileRollSchema)
+})
+
+test('percentileMethod of "consistent" runs getConsistentPercentileValue', async () => {
+  const spy = jest.spyOn(percentileMethods, 'consistent')
+
+  rollPercentileDice('consistent')
+  expect(spy).toHaveBeenCalledTimes(1)
+})
+
+test('percentileMethod of "exception" runs getExceptionPercentileValue', async () => {
+  const spy = jest.spyOn(percentileMethods, 'exception')
+
+  rollPercentileDice('exception')
+  expect(spy).toHaveBeenCalledTimes(1)
 })
