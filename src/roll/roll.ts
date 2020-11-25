@@ -9,8 +9,8 @@ import {
   SingleRoll,
 } from './types'
 
-// Rolls a single polyhedral die once
-export const rollDie = (sides: PolyhedralSides): SingleRoll => {
+// Returns a function that rolls a single polyhedral die once
+export const rollDie = (sides: PolyhedralSides) => (): SingleRoll => {
   const diceRoll = die(sides)()
 
   return {
@@ -19,12 +19,12 @@ export const rollDie = (sides: PolyhedralSides): SingleRoll => {
   }
 }
 
-// Rolls a single d20 twice for advantage or disadvantage
+// Returns a function that rolls a single d20 twice for advantage or disadvantage
 // Advantage: highest number
 // Disadvantage: lowest number
 export const rollDoubleDice = (
   rollModifier: RollModifier,
-): DoubleRoll => {
+) => (): DoubleRoll => {
   const d20 = die(20)
   const firstRoll = d20()
   const secondRoll = d20()
@@ -38,11 +38,11 @@ export const rollDoubleDice = (
   }
 }
 
-// Rolls a d10 twice to create a 1-100 number
+// Returns a function that rolls a d10 twice to create a 1-100 number
 // Use one of the two methods of turning two 1-10 numbers into a 1-100 number
 export const rollPercentileDice = (
   percentileMethod: PercentileMethod,
-): PercentileRoll => {
+) => (): PercentileRoll => {
   const d10 = die(10)
   const tensRoll = d10()
   const unitsRoll = d10()

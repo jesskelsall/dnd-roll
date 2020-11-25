@@ -5,27 +5,34 @@ import { rollPercentileDice } from '../../../roll/roll'
 const rollSchema = Joi.number().integer().min(1).max(10)
 const valueSchema = Joi.number().integer().min(1).max(100)
 
-test('returns a PercentileRoll', async () => {
+test('returns a function', async () => {
+  const functionSchema = Joi.function().arity(0)
+
+  expect(rollPercentileDice('consistent')).toMatchJoiSchema(functionSchema)
+  expect(rollPercentileDice('exception')).toMatchJoiSchema(functionSchema)
+})
+
+test('returns a function that returns a PercentileRoll', async () => {
   const percentileRollSchema = Joi.object().keys({
     diceRoll: rollSchema.required(),
     tensRoll: rollSchema.required(),
     value: valueSchema.required(),
   })
 
-  expect(rollPercentileDice('consistent')).toMatchJoiSchema(percentileRollSchema)
-  expect(rollPercentileDice('exception')).toMatchJoiSchema(percentileRollSchema)
+  expect(rollPercentileDice('consistent')()).toMatchJoiSchema(percentileRollSchema)
+  expect(rollPercentileDice('exception')()).toMatchJoiSchema(percentileRollSchema)
 })
 
 test('percentileMethod of "consistent" runs getConsistentPercentileValue', async () => {
   const spy = jest.spyOn(percentileMethods, 'consistent')
 
-  rollPercentileDice('consistent')
+  rollPercentileDice('consistent')()
   expect(spy).toHaveBeenCalledTimes(1)
 })
 
 test('percentileMethod of "exception" runs getExceptionPercentileValue', async () => {
   const spy = jest.spyOn(percentileMethods, 'exception')
 
-  rollPercentileDice('exception')
+  rollPercentileDice('exception')()
   expect(spy).toHaveBeenCalledTimes(1)
 })
