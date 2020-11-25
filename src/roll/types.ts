@@ -49,7 +49,6 @@ export interface PercentileRoll extends SingleRoll {
 export interface NormalRollGroup {
   sides: PolyhedralSides,
   rolls: SingleRoll[],
-  quantity: number,
   total: number,
 }
 
@@ -73,7 +72,7 @@ export type RollGroup = NormalRollGroup | DoubleD20RollGroup | PercentileRollGro
 
 export const isDoubleRollGroup = (
   rollGroup: RollGroup,
-): rollGroup is DoubleD20RollGroup => 'condition' in rollGroup
+): rollGroup is DoubleD20RollGroup => 'modifier' in rollGroup
 
 export const isPercentileRollGroup = (
   rollGroup: RollGroup,

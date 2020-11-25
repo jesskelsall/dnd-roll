@@ -1,4 +1,4 @@
-export const AVERAGE_TOLERANCE = 0.004
+export const AVERAGE_TOLERANCE = 0.006
 
 export const EQUATION_DELIMITER = ' '
 
@@ -6,4 +6,4 @@ export const EQUATION_DELIMITER = ' '
 // e.g. d6, 2d8
 export const DICE_NOTATION_REGEX = /(\d*)\s*d\s*(\d+)/
 
-export const POLYHEDRAL_SIDES = [4, 6, 8, 10, 12, 20]
+export const POLYHEDRAL_SIDES = [4, 6, 8, 10, 12, 20, 100]
