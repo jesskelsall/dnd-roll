@@ -46,27 +46,27 @@ export interface PercentileRoll extends SingleRoll {
 }
 
 // The result of each dice notation e.g. 3d10
-export interface NormalRollGroup {
-  sides: PolyhedralSides,
+export interface SingleRollGroup {
   rolls: SingleRoll[],
+  sides: PolyhedralSides,
   total: number,
 }
 
 // When rolling d20s with advantage or disadvantage, all rolls are two d20 rolls
-export interface DoubleD20RollGroup extends NormalRollGroup {
+export interface DoubleD20RollGroup extends SingleRollGroup {
   modifier: RollModifier,
-  sides: 20,
   rolls: DoubleRoll[],
+  sides: 20,
 }
 
 // When rolling percentile dice, each roll is two d10 dice
-export interface PercentileRollGroup extends NormalRollGroup {
-  sides: 100,
+export interface PercentileRollGroup extends SingleRollGroup {
   rolls: PercentileRoll[],
+  sides: 100,
 }
 
 // Each dice notation could produce one of these roll groups
-export type RollGroup = NormalRollGroup | DoubleD20RollGroup | PercentileRollGroup
+export type RollGroup = SingleRollGroup | DoubleD20RollGroup | PercentileRollGroup
 
 // ROLL TYPE GUARDS
 

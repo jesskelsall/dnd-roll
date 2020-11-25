@@ -57,3 +57,9 @@ export const rollPercentileDice = (
     value: valueFunction(tensRoll, unitsRoll),
   }
 }
+
+export default {
+  die: rollDie,
+  doubleDice: rollDoubleDice,
+  percentileDice: rollPercentileDice,
+}

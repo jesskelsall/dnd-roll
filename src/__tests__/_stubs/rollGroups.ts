@@ -1,6 +1,6 @@
-import { DoubleD20RollGroup, NormalRollGroup, PercentileRollGroup } from '../../roll/types'
+import { DoubleD20RollGroup, SingleRollGroup, PercentileRollGroup } from '../../roll/types'
 
-export const normalRollGroup: NormalRollGroup = {
+export const singleRollGroup: SingleRollGroup = {
   sides: 6,
   rolls: [
     {

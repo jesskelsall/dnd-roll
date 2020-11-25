@@ -23,14 +23,14 @@ test('returns a function that returns a PercentileRoll', async () => {
   expect(rollPercentileDice('exception')()).toMatchJoiSchema(percentileRollSchema)
 })
 
-test('percentileMethod of "consistent" runs getConsistentPercentileValue', async () => {
+test('calls getConsistentPercentileValue with a percentileMethod of "consistent"', async () => {
   const spy = jest.spyOn(percentileMethods, 'consistent')
 
   rollPercentileDice('consistent')()
   expect(spy).toHaveBeenCalledTimes(1)
 })
 
-test('percentileMethod of "exception" runs getExceptionPercentileValue', async () => {
+test('calls getExceptionPercentileValue with a percentileMethod of "exception"', async () => {
   const spy = jest.spyOn(percentileMethods, 'exception')
 
   rollPercentileDice('exception')()
