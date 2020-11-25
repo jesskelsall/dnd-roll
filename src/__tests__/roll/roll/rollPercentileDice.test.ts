@@ -12,11 +12,8 @@ test('returns a PercentileRoll', async () => {
     value: valueSchema.required(),
   })
 
-  const consistentResult = rollPercentileDice('consistent')
-  expect(consistentResult).toMatchJoiSchema(percentileRollSchema)
-
-  const exceptionResult = rollPercentileDice('exception')
-  expect(exceptionResult).toMatchJoiSchema(percentileRollSchema)
+  expect(rollPercentileDice('consistent')).toMatchJoiSchema(percentileRollSchema)
+  expect(rollPercentileDice('exception')).toMatchJoiSchema(percentileRollSchema)
 })
 
 test('percentileMethod of "consistent" runs getConsistentPercentileValue', async () => {
