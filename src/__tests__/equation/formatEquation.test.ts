@@ -7,6 +7,12 @@ test('removes spaces in dice notation', async () => {
   expect(formatEquation('3  d6')).toBe('3d6')
 })
 
+test('converts percentile dice formats into a consistent d100', async () => {
+  expect(formatEquation('d%')).toBe('d100')
+  expect(formatEquation('d100')).toBe('d100')
+  expect(formatEquation('percentile')).toBe('d100')
+})
+
 test('converts addition of negative numbers to subtraction of positive numbers', async () => {
   expect(formatEquation('d6 + -1')).toBe('d6 - 1')
   expect(formatEquation('d6 +-2')).toBe('d6 - 2')

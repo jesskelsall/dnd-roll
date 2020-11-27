@@ -1,4 +1,4 @@
-import { POLYHEDRAL_SIDES } from '../consts'
+import { D100_METHODS, POLYHEDRAL_SIDES } from '../consts'
 
 // DICE
 
@@ -25,6 +25,10 @@ export type RollModifier = 'advantage' | 'disadvantage'
 // d100: roll a single 100 sided dice
 export type PercentileMethod = 'consistent' | 'exception'
 export type D100Method = PercentileMethod | 'd100'
+
+export const isD100Method = (
+  method: string,
+): method is D100Method => D100_METHODS.includes(method)
 
 // ROLLS
 

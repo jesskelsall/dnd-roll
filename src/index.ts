@@ -1,5 +1,3 @@
-import { collectArguments } from './argv'
+import { interpretArguments } from './options/yargs'
 
-const maths = collectArguments(process.argv)
-
-console.dir(maths)
+interpretArguments(process.argv)
