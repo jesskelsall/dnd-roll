@@ -1,4 +1,4 @@
-import { D100_METHODS, POLYHEDRAL_SIDES } from '../consts'
+import { D100_METHODS, POLYHEDRAL_SIDES } from '../consts/consts_types'
 
 // DICE
 

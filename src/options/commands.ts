@@ -1,13 +1,13 @@
-import { runEquation } from '../equation'
+import { SKILL_BONUS_DEFAULT } from '../consts'
+import equation from '../equation'
 import { parseArgv } from './parse'
 import { Yargs } from './types'
-import { SKILL_BONUS_DEFAULT } from '../consts'
 
 // Default command - runs whatever dice notation equation the user enters
 export const equationCommand = (args: Yargs): void => {
   const parsedArguments = parseArgv(args, false)
 
-  runEquation(
+  equation.run(
     parsedArguments.equation,
     parsedArguments.modifier,
     parsedArguments.d100Method,
@@ -18,7 +18,7 @@ export const equationCommand = (args: Yargs): void => {
 export const percentileCommand = (args: Yargs): void => {
   const parsedArguments = parseArgv(args, true)
 
-  runEquation(
+  equation.run(
     'd100',
     parsedArguments.modifier,
     parsedArguments.d100Method,
@@ -33,7 +33,7 @@ export const skillCommand = (args: Yargs): void => {
   const isNegative = bonus < 0
   const operator = isNegative ? '-' : '+'
 
-  runEquation(
+  equation.run(
     `d20 ${operator} ${Math.abs(bonus)}`,
     parsedArguments.modifier,
     parsedArguments.d100Method,

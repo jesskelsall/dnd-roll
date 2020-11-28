@@ -42,7 +42,7 @@ export const percentileYargs: Yargs[] = [
   },
   {
     _: ['percentile'],
-    percentile: 'constant',
+    percentile: 'consistent',
   },
   {
     _: ['percentile'],
@@ -86,10 +86,4 @@ export const skillYargs: Yargs[] = [
     disadvantage: true,
     percentile: 'exception',
   },
-]
-
-export const allYargs: Yargs[] = [
-  ...equationYargs,
-  ...percentileYargs,
-  ...skillYargs,
 ]

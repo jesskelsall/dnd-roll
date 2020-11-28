@@ -1,6 +1,6 @@
-import { Options, Yargs } from './types'
-import { RollModifier, isD100Method } from '../roll/types'
 import { D100_METHOD_DEFAULT } from '../consts'
+import { isD100Method, RollModifier } from '../roll/types'
+import { Options, Yargs } from './types'
 
 // Turns the yargs return object into a more useful object
 // Contains simple argument properties that can be passed into functions

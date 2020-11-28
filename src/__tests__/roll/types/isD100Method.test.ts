@@ -1,5 +1,5 @@
-import { isD100Method } from '../../../roll/types'
 import { D100_METHODS } from '../../../consts'
+import { isD100Method } from '../../../roll/types'
 
 test('returns true with a D100Method', async () => {
   expect.assertions(D100_METHODS.length)

@@ -15,7 +15,7 @@ export const equationArgvs: Argv[] = [
 export const percentileArgvs: Argv[] = [
   ['percentile'],
   ['percentile', '--percentile', 'd100'],
-  ['percentile', '--percentile', 'constant'],
+  ['percentile', '--percentile', 'consistent'],
   ['percentile', '--percentile', 'exception'],
   ['percentile', '--percentile', 'invalid'],
 ].map(padArgv)
@@ -28,9 +28,3 @@ export const skillArgvs: Argv[] = [
   ['skill', '--advantage'],
   ['skill', '--disadvantage'],
 ].map(padArgv)
-
-export const allArgvs: Argv[] = [
-  ...equationArgvs,
-  ...percentileArgvs,
-  ...skillArgvs,
-]
