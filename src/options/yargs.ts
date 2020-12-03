@@ -33,13 +33,6 @@ export const interpretArguments = (argv: Argv): void => {
       },
       handler: commands.skill,
     })
-    .example('$0 d6', 'Rolls a d6.')
-    .example('$0 2d8', 'Rolls two d8.')
-    .example('$0 2d12 + d6 + 2', 'Rolls two d12, one d6, and adds 2.')
-    .example('$0 percentile', 'Rolls a d100.')
-    .example('$0 skill', 'Rolls a d20.')
-    .example('$0 skill 5', 'Rolls a d20 + 5.')
-    .example('$0 skill --advantage', 'Rolls two d20 and takes the highest number.')
     .options({
       advantage: {
         alias: ['a', 'adv'],
@@ -64,6 +57,13 @@ export const interpretArguments = (argv: Argv): void => {
       },
     })
     .conflicts('advantage', 'disadvantage')
+    .example('$0 d6', 'Rolls a d6.')
+    .example('$0 2d8', 'Rolls two d8.')
+    .example('$0 2d12 + d6 + 2', 'Rolls two d12, one d6, and adds 2.')
+    .example('$0 percentile', 'Rolls a d100.')
+    .example('$0 skill', 'Rolls a d20.')
+    .example('$0 skill 5', 'Rolls a d20 + 5.')
+    .example('$0 skill --advantage', 'Rolls two d20 and takes the highest number.')
     .wrap(terminalWidth())
     .argv
 }
