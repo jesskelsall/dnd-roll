@@ -18,8 +18,8 @@ export class DiceNotationError extends Error {
 
 // Display an error message in a user friendly way
 export const displayError = (
-  message: string,
   prefix: string,
+  message: string,
 ): void => {
   const redPrefix = red(`${prefix}:`)
   console.error(`${redPrefix} ${message}`)
@@ -30,6 +30,6 @@ export const displayDiceNotationErrors = (
   diceNotationError: DiceNotationError,
 ): void => {
   diceNotationError.errors.forEach((error) => {
-    displayError(error, 'Invalid dice notation')
+    displayError('Invalid dice notation', error)
   })
 }
