@@ -1,4 +1,4 @@
-import { formatEquation } from '../../equation/format'
+import { formatEquation } from '../../../equation/format'
 
 test('removes spaces in dice notation', async () => {
   expect(formatEquation('d 20')).toBe('d20')
