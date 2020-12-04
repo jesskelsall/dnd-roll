@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { D100_METHOD_DEFAULT, POLYHEDRAL_SIDES } from '../../../consts'
-import { DiceNotationError } from '../../../equation/DiceNotationError'
+import { DiceNotationError } from '../../../equation/errors/DiceNotationError'
 import { rollDiceNotation } from '../../../equation/roll'
 import { RollModifier } from '../../../roll/types'
 

@@ -1,6 +1,6 @@
 import { red } from 'ansi-styles'
 import stripAnsi from 'strip-ansi'
-import { displayError } from '../../../equation/error'
+import { displayError } from '../../../equation/errors'
 
 const consoleSpy = jest.spyOn(console, 'error').mockImplementation(jest.fn())
 

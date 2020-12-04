@@ -1,14 +1,26 @@
 import { isPercentileRollGroup } from '../../../roll/types'
-import { doubleRollGroup, percentileRollGroup, singleRollGroup } from '../../_stubs/rollGroups'
+import { doubleRollGroups, percentileRollGroups, singleRollGroups } from '../../_stubs/rollGroups'
 
 test('returns true with a PercentileRollGroup', async () => {
-  expect(isPercentileRollGroup(percentileRollGroup)).toBe(true)
+  expect.assertions(percentileRollGroups.length)
+
+  percentileRollGroups.forEach((group) => {
+    expect(isPercentileRollGroup(group)).toBe(true)
+  })
 })
 
 test('returns false with a SingleRollGroup', async () => {
-  expect(isPercentileRollGroup(singleRollGroup)).toBe(false)
+  expect.assertions(singleRollGroups.length)
+
+  singleRollGroups.forEach((group) => {
+    expect(isPercentileRollGroup(group)).toBe(false)
+  })
 })
 
 test('returns false with a DoubleD20RollGroup', async () => {
-  expect(isPercentileRollGroup(doubleRollGroup)).toBe(false)
+  expect.assertions(doubleRollGroups.length)
+
+  doubleRollGroups.forEach((group) => {
+    expect(isPercentileRollGroup(group)).toBe(false)
+  })
 })

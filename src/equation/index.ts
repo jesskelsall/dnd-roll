@@ -1,7 +1,9 @@
 import { D100Method, RollModifier } from '../roll/types'
-import { DiceNotationError } from './DiceNotationError'
-import { displayDiceNotationErrors, displayError } from './error'
+import { displayDiceNotationErrors, displayError } from './errors'
+import { DiceNotationError } from './errors/DiceNotationError'
+import { InvalidEquationError } from './errors/InvalidEquationError'
 import { formatEquation } from './format'
+import { calculateResult } from './result'
 import { rollDiceNotation } from './roll'
 
 export const runEquation = (
@@ -18,15 +20,21 @@ export const runEquation = (
       d100Method,
     )
 
+    const result = calculateResult(equationParts)
+
     console.dir({
-      formattedEquation,
-      equationParts,
+      equation,
       modifier,
       d100Method,
+      formattedEquation,
+      equationParts,
+      result,
     })
   } catch (error) {
     if (error instanceof DiceNotationError) {
       displayDiceNotationErrors(error)
+    } else if (error instanceof InvalidEquationError) {
+      displayError('Equation Error', error.message)
     } else {
       displayError('Application Error', error.message)
     }

@@ -1,7 +1,7 @@
 import { DICE_NOTATION_REGEX, POLYHEDRAL_SIDES } from '../consts'
 import { rollDiceGroup } from '../roll/rollGroup'
 import { D100Method, isPolyhedralSides, RollModifier } from '../roll/types'
-import { DiceNotationError } from './DiceNotationError'
+import { DiceNotationError } from './errors/DiceNotationError'
 import { EquationParts } from './types'
 
 const strictDiceNotationRegex = new RegExp(`^${DICE_NOTATION_REGEX.source}$`)
