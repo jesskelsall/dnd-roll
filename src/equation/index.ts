@@ -1,5 +1,6 @@
 import { D100Method, RollModifier } from '../roll/types'
-import { DiceNotationError, displayDiceNotationErrors, displayError } from './error'
+import { DiceNotationError } from './DiceNotationError'
+import { displayDiceNotationErrors, displayError } from './error'
 import { formatEquation } from './format'
 import { rollDiceNotation } from './roll'
 
@@ -27,7 +28,7 @@ export const runEquation = (
     if (error instanceof DiceNotationError) {
       displayDiceNotationErrors(error)
     } else {
-      displayError(error.message, 'Application Error')
+      displayError('Application Error', error.message)
     }
   }
 }

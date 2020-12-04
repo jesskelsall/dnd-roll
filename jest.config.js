@@ -4,6 +4,7 @@ module.exports = {
     'src/**/*.ts',
     '!src/__tests__/_*/*.ts',
     '!src/__tests__/*',
+    '!src/equation/DiceNotationError.ts',
     '!src/index.ts',
   ],
   coverageDirectory: 'reports/coverage',

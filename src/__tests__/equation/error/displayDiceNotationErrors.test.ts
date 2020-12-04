@@ -1,5 +1,6 @@
 import stripAnsi from 'strip-ansi'
-import { DiceNotationError, displayDiceNotationErrors } from '../../../equation/error'
+import { DiceNotationError } from '../../../equation/DiceNotationError'
+import { displayDiceNotationErrors } from '../../../equation/error'
 
 const consoleSpy = jest.spyOn(console, 'error').mockImplementation(jest.fn())
 
