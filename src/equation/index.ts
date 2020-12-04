@@ -1,4 +1,5 @@
 import { D100Method, RollModifier } from '../roll/types'
+import { displayResult } from './display'
 import { displayDiceNotationErrors, displayError } from './errors'
 import { DiceNotationError } from './errors/DiceNotationError'
 import { InvalidEquationError } from './errors/InvalidEquationError'
@@ -22,14 +23,7 @@ export const runEquation = (
 
     const result = calculateResult(equationParts)
 
-    console.dir({
-      equation,
-      modifier,
-      d100Method,
-      formattedEquation,
-      equationParts,
-      result,
-    })
+    displayResult(equationParts, result)
   } catch (error) {
     if (error instanceof DiceNotationError) {
       displayDiceNotationErrors(error)
@@ -44,10 +38,3 @@ export const runEquation = (
 export default {
   run: runEquation,
 }
-
-// TODO
-// 1. equation string -> equation string | rollGroup
-// 2. substitute rollGroups for their total and calculate the final total
-// 3. display the roll as a coloured number
-// 4. stitch together to make an output string including total (X + Y = Z)
-// 5. nice error handling

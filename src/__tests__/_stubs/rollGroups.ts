@@ -1,4 +1,6 @@
-import { DoubleD20RollGroup, SingleRollGroup, PercentileRollGroup } from '../../roll/types'
+import {
+  DoubleD20RollGroup, SingleRollGroup, PercentileRollGroup, RollGroup,
+} from '../../roll/types'
 
 export const singleRollGroups: SingleRollGroup[] = [
   {
@@ -119,4 +121,10 @@ export const percentileRollGroups: PercentileRollGroup[] = [
     ],
     total: 100,
   },
+]
+
+export const allRollGroups: RollGroup[] = [
+  ...singleRollGroups,
+  ...doubleRollGroups,
+  ...percentileRollGroups,
 ]

@@ -1,15 +1,10 @@
 import Joi from 'joi'
-import { RollGroup } from '../../../roll/types'
-import { doubleRollGroups, percentileRollGroups, singleRollGroups } from '../../_stubs/rollGroups'
+import { InvalidEquationError } from '../../../equation/errors/InvalidEquationError'
 import { calculateResult } from '../../../equation/result'
 import { EquationParts } from '../../../equation/types'
-import { InvalidEquationError } from '../../../equation/errors/InvalidEquationError'
-
-const allRollGroups: RollGroup[] = [
-  ...singleRollGroups,
-  ...doubleRollGroups,
-  ...percentileRollGroups,
-]
+import {
+  allRollGroups, doubleRollGroups, percentileRollGroups, singleRollGroups,
+} from '../../_stubs/rollGroups'
 
 const mixedEquations: EquationParts[] = [
   [singleRollGroups[0], '+', '5'],
