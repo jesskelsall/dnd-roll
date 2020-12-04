@@ -14,6 +14,13 @@ export const rollDiceNotation = (
   modifier: RollModifier | null,
   d100Method: D100Method,
 ): EquationParts => {
+  // Without anything to roll, show a useful error to help the user out
+  if (equationParts.length === 1 && equationParts[0] === '') {
+    throw new DiceNotationError([
+      'Nothing to roll! Run dnd-roll --help for examples.',
+    ])
+  }
+
   // Collate all errors encountered so that they can all be included in a DiceNotationError
   const errors: string[] = []
 
@@ -31,7 +38,6 @@ export const rollDiceNotation = (
     // Cannot roll zero of a dice
     if (quantity === 0) {
       errors.push(`Cannot roll a dice zero times: "${equationPart}".`)
-      return equationPart
     }
 
     const sides = parseInt(diceNotationParts[2], 10)
@@ -41,11 +47,10 @@ export const rollDiceNotation = (
       errors.push(
         `Dice must have ${POLYHEDRAL_SIDES.join('/')} sides: "${equationPart}".`,
       )
-      return equationPart
     }
 
     // If any errors have already been found, there is no reason to roll any dice
-    if (errors.length) return equationPart
+    if (!isPolyhedralSides(sides) || errors.length) return equationPart
 
     // Roll the dice in the dice notation
     return rollDiceGroup(
