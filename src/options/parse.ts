@@ -24,5 +24,6 @@ export const parseArgv = (
     d100Method: isD100Method(yargs.percentile) ? yargs.percentile : D100_METHOD_DEFAULT,
     equation: otherArguments.join(' '),
     modifier,
+    verbose: yargs.verbose,
   }
 }

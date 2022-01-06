@@ -10,6 +10,7 @@ export interface Yargs {
   bonus?: number,
   disadvantage?: boolean,
   percentile: string,
+  verbose: number,
 }
 
 // Arguments formatted into simple properties
@@ -19,4 +20,5 @@ export interface Options {
   d100Method: D100Method,
   equation: string,
   modifier: RollModifier | null,
+  verbose: number,
 }

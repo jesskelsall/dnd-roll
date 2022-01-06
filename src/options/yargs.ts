@@ -35,12 +35,12 @@ export const interpretArguments = (argv: Argv): void => {
     })
     .options({
       advantage: {
-        alias: ['a', 'adv'],
+        alias: ['A', 'adv'],
         describe: 'Roll d20s twice and take the higher number.',
         type: 'boolean',
       },
       disadvantage: {
-        alias: ['d', 'disadv'],
+        alias: ['D', 'disadv'],
         describe: 'Roll d20s twice and take the lower number.',
         type: 'boolean',
       },
@@ -54,6 +54,15 @@ export const interpretArguments = (argv: Argv): void => {
           '- As 0-9 && 00-90 dice (exception).',
         ].join('\n'),
         type: 'string',
+      },
+      verbose: {
+        alias: ['v'],
+        describe: [
+          'Show more information about the specific dice rolled. Use more than once for a more verbose output:',
+          'Once:  Show each dice roll when rolling the same dice multiple times.',
+          'Twice: Show each dice roll when rolling with advantage, disadvantage, or two percentile d10s.',
+        ].join('\n'),
+        type: 'count',
       },
     })
     .conflicts('advantage', 'disadvantage')
